@@ -1,5 +1,5 @@
 import mysql.connector
-from config import USER, PASSWORD, HOST
+from BE.config import USER, PASSWORD, HOST
 
 
 class DBConnectionError(Exception):

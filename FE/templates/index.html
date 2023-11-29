@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Group 6 Final Project | Software 1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles.css" rel="stylesheet">
+        <style>
+            * {
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                font-family: Helvetica;
+                background-color: #00ebe7;
+            }
+
+            header {
+                text-align: center;
+                width: 100%;
+                height: 20vh;
+                background-color: #ebe700;
+                display: block;
+            }
+
+            #logo {
+                width: max(100px, 18vw);
+                background-color: #0a0a23;
+                aspect-ratio: 35 / 4;
+                padding: 0.4rem;
+            }
+
+            section {
+                width: 80%;
+                height: 70vh;
+                margin: 0 auto 10px auto;
+                max-width: 600px;
+                padding-top: 30px;
+
+            }
+
+            p {
+                font-weight: heavy;
+                font-size: 30px;
+                margin: 0;
+                padding: 0;
+            }
+
+            footer {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                height: 10vh;
+                background-color: #ebe700;
+                padding-top: 15px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <img id="logo" src="">
+            <h1>(Project Name Here) Language Learning Game</h1>
+            <p>Learn grammar like a foreigner</p>
+        </header>
+        <section>
+            <div class="levelChoiceHeading">
+                <label>Please choose your current level:</label>
+            </div>
+            <div class="answer">
+<!-- Not sure whether a dropdown or the radio buttons are better here.
+Radio buttons allow for hover text w/ description of level -->
+                <select required>
+                    <option value="select an option">Select an option</option>
+                    <option value="a1">A1</option>
+                    <option value="a2">A2</option>
+                    <option value="b1">B1</option>
+                </select>
+             </div>
+
+            <p title="Beginner level - can understand very basic expressions"><label><input type="radio" name="learningLevel" value="false">A1</label></p>
+            <p title="Elementary level - can understand sentences and frequently used expressions"><label><input type="radio" name="learningLevel" value="false">A2</label></p>
+            <p title="Intermediate level - can understand the main points of clear standard input on familiar topics"><label><input type="radio" name="learningLevel" value="true">B1</label></p>
+            <button type="submit">Let's get started!</button>
+            <!-- reference for level definitions: https://www.europassitalian.com/blog/cefr-levels/ -->
+        </section>
+        <footer>
+            Learning the language of language learning
+        </footer>
+    </body>
+</html>
