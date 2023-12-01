@@ -8,13 +8,15 @@ welcome_owl = '''
 
 #Draft message- please don't actually use this- this was just to test how it looked
 welcome_message= ''' 
-Welcome to the Language Learning Game\n This game is designed to help native English Speakers learn the technicalities of the English langauge. 
-\n Can you tell a 'noun' from an 'adjective'? Or what the 'definitive article' is? blah blah \n 
-Then this game is for you! \n \n
+Welcome to the Language Learning Game\n Learning English grammar rules can be challenging for non-native and native speakers alike.\n
+This game is intended as an educational resource for both learners and teachers, and those wanting to improve their own skills and knowledge.
+
+\n Can you tell a 'noun' from an 'adjective'? Or what an 'article' is? blah blah \n 
+Test your knowledge with this mini-quiz \n \n
  
  +++GAME RULES+++\n
  
- ADD MORE INFO HERE "'''
+You will be shown a simple phrase, and you've to guess  "'''
 
 #Alejandra & Maria- creative eye over this please!
 
