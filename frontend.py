@@ -16,9 +16,12 @@ Test your knowledge with this mini-quiz \n \n
  
  +++GAME RULES+++\n
  
-You will be shown a simple phrase, and you've to guess  "'''
+You will be shown a simple phrase, and you've to guess which word is the noun, or adjective etc\n
+  If you're not sure how to tell the difference between a noun or an article, a handy glossary is printed below: "'''
 
 #Alejandra & Maria- creative eye over this please!
 
 print(welcome_owl)
 print (welcome_message)
+
+#print (db-glossary)
