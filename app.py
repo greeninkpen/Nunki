@@ -28,4 +28,9 @@ class APICall:
         )
         return chat_completion
 
+api_call_instance = APICall()
+result = api_call_instance.api_call()
+generated_phrase = result.choices[0].message.content
+#had a non-subsriptable error, and fix was here: https://stackoverflow.com/questions/77444332/openai-python-package-error-chatcompletion-object-is-not-subscriptable
+print (generated_phrase)
 
