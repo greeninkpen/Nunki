@@ -16,7 +16,7 @@ This is an example of how to list things you need to use the software and how to
 
 Below is an example of how you can install and set up the program.
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://example1.com](https://example.com)
 
 
 <!-- USAGE EXAMPLES -->
@@ -30,4 +30,6 @@ Below is an example of how you can install and set up the program.
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
+
+
 
