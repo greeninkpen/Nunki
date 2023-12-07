@@ -22,7 +22,7 @@ class APICall:
 
         chat_completion = client.chat.completions.create(
          messages=[{"role": "user", "content":
-        "Write me a short sentense that contains at least three of the eight parts of speech for an A1 English learner"}],
+        "Give me an example of an A1 level sentence in English with the parts of speech notated"}],
 
         model="gpt-3.5-turbo",
         )
