@@ -11,6 +11,6 @@ def _connect_to_db(language_game_db):
         user=USER,
         password=PASSWORD,
         auth_plugin='mysql_native_password',
-        database=db_name
+        database=language_game_db
     )
     return connection

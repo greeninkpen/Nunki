@@ -8,7 +8,8 @@ USE language_game;
 CREATE TABLE glossary (
     glossary_id INT PRIMARY KEY,
     term VARCHAR(50) NOT NULL,
-    definition TEXT NOT NULL
+    definition TEXT NOT NULL,
+    INDEX (term) -- added this index because I was getting error code 1822 trying to create word table for a missing index
 );
 
 -- Create the word table
