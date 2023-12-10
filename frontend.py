@@ -1,3 +1,5 @@
+import requests
+import json
 
 welcome_fox = '''
    /\   /\   
@@ -49,3 +51,34 @@ print(game_rules)
 print(glossary_message)
 #print(db-glossary)
 
+
+def add_sentence(full_sentence):
+    sentence = {
+        "sentence": full_sentence
+    }
+    request = requests.post("http:127.0.0.1:5000/sentence",
+                            headers={'content-type': 'application/json'},
+                            json=sentence
+                            )
+    result = request.json()
+
+
+def add_words(sentence_id, words):
+    data = {
+        "sentence_id": sentence_id,
+        "words": words
+    }
+    request = requests.post("http:127.0.0.1:5000/words",
+                            headers={'content-type': 'application/json'},
+                            json=data
+                            )
+    result = request.json()
+
+
+def run():
+    # add new sentence/ sentence words + part of speech
+    add_sentence()
+
+
+if __name__ == '__main__':
+    run()
