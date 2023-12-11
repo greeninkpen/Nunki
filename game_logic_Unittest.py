@@ -14,8 +14,8 @@ class TestLanguageGame(unittest.TestCase):
         self.game_instance = LanguageGame()
 
     def test_language_game_correct_input(self):
-        phrase = "The cat is sleeping"
-        phrase_dict = {
+        game_phrase = "The cat is sleeping"
+        game_phrase_dict = {
             'article': 'The',
             'noun': 'cat',
             'verb': 'is',
@@ -39,8 +39,8 @@ class TestLanguageGame(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     def test_language_game_incorrect_input(self):
-        phrase = "The cat is sleeping"
-        phrase_dict = {
+        game_phrase = "The cat is sleeping"
+        game_phrase_dict = {
             'article': 'The',
             'noun': 'cat',
             'verb': 'is',
@@ -64,8 +64,8 @@ class TestLanguageGame(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     def test_language_game_exception_handling(self):
-        phrase = "The cat is sleeping"
-        phrase_dict = {
+        game_phrase = "The cat is sleeping"
+        game_phrase_dict = {
             'article': 'The',
             'noun': 'cat',
             'verb': 'is',
@@ -78,8 +78,8 @@ class TestLanguageGame(unittest.TestCase):
                     self.game_instance.language_game(phrase, phrase_dict)
 
     def test_language_game_uppercase_input(self):
-        phrase = "The cat is sleeping"
-        phrase_dict = {
+        game_phrase = "The cat is sleeping"
+        game_phrase_dict = {
             'article': 'The',
             'noun': 'cat',
             'verb': 'is',
@@ -103,8 +103,8 @@ class TestLanguageGame(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     def test_language_game_wrong_data_type_input(self):
-        phrase = "The cat is sleeping"
-        phrase_dict = {
+        game_phrase = "The cat is sleeping"
+        game_phrase_dict = {
             'article': 'The',
             'noun': 'cat',
             'verb': 'is',
@@ -124,8 +124,8 @@ class TestLanguageGame(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     def test_language_game_special_characters_input(self):
-        phrase = "The cat is sleeping"
-        phrase_dict = {
+        game_phrase = "The cat is sleeping"
+        game_phrase_dict = {
             'article': 'The',
             'noun': 'cat',
             'verb': 'is',
