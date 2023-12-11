@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from openai import OpenAI
 from config import api_key
+from db_utils import _connect_to_db, get_sentence
 
 app = Flask(__name__)
 
@@ -34,3 +35,18 @@ generated_phrase = result.choices[0].message.content
 #had a non-subsriptable error, and fix was here: https://stackoverflow.com/questions/77444332/openai-python-package-error-chatcompletion-object-is-not-subscriptable
 print (generated_phrase)
 
+#DRAFT GET REQUEST
+@app.route("/get_sentence", methods=["GET"])
+def get_sentence():
+    # Try to get a random sentence from the database
+    sentence = get_sentence()
+
+    # Testing until sentences are available in the DB
+    if not sentence:
+        sample_sentence = "This is a sample sentence."
+        return jsonify({"sentence": sample_sentence})
+
+    return jsonify({"sentence": sentence})
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
