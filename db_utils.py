@@ -6,20 +6,20 @@ class DBConnectionError(Exception):
     pass
 
 
-def _connect_to_db(language_game_db):
+def _connect_to_db(db_name):
     connection = mysql.connector.connect(
         host=HOST,
         user=USER,
         password=PASSWORD,
         auth_plugin='mysql_native_password',
-        database=language_game_db
+        database=db_name
     )
     return connection
 
 
 def db_add_sentence(sentence):
     try:
-        db_name = 'language_game_db'
+        db_name = 'language_game'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
@@ -43,7 +43,7 @@ def db_add_sentence(sentence):
 
 def db_add_words(sentence_id, word_text, part_of_speech):
     try:
-        db_name = 'language_game_db'
+        db_name = 'language_game'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
@@ -64,6 +64,6 @@ def db_add_words(sentence_id, word_text, part_of_speech):
             print("DB connection is closed")
 
 
-if __name__ == '__main__':
-    db_add_sentence("test sentence")
+# if __name__ == '__main__':
+#     db_add_sentence()
 
