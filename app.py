@@ -1,10 +1,10 @@
 from flask import Flask, jsonify, request
 from openai import OpenAI
 from config import api_key
-from db_utils import _connect_to_db, get_sentence
+from db_utils import _connect_to_db, get_sentence, get_random_sentence
 
 app = Flask(__name__)
-
+# Welcome endpoint
 @app.route("/")
 def hello():
     return "it works!"
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     app.run(debug=True, port=5000)
 
 
-
+# Class to handle the OpenAI API call
 class APICall:
     def api_call(self):
         client = OpenAI(
@@ -39,7 +39,7 @@ print (generated_phrase)
 @app.route("/get_sentence", methods=["GET"])
 def get_sentence():
     # Try to get a random sentence from the database
-    sentence = get_sentence()
+    sentence = get_random_sentence()
 
     # Testing until sentences are available in the DB
     if not sentence:
