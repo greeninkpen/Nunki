@@ -47,7 +47,7 @@ def db_add_words(sentence_id, word_text, part_of_speech):
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
-        query_word = "INSERT INTO word(word_text) VALUES (%s, %s, %s)"
+        query_word = "INSERT INTO word(word_text) VALUES (%s, %s)"
         values_word = (word_text, part_of_speech)
 
         cur.execute(query_word, values_word)
