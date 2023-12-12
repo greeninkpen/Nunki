@@ -25,7 +25,7 @@ class TestLanguageGame(unittest.TestCase):
         input_values = ['The', 'cat', 'is', 'sleeping', 'no']
         with patch('builtins.input', side_effect=input_values):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                self.game_instance.language_game(phrase, phrase_dict)
+                self.game_instance.language_game(game_phrase, game_phrase_dict)
 
         expected_output = (
             "Here is your sentence: The cat is sleeping\n"
@@ -50,7 +50,7 @@ class TestLanguageGame(unittest.TestCase):
         input_values = ['A', 'dog', 'are', 'awake', 'no']
         with patch('builtins.input', side_effect=input_values):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                self.game_instance.language_game(phrase, phrase_dict)
+                self.game_instance.language_game(game_phrase, game_phrase_dict)
 
         expected_output = (
             "Here is your sentence: The cat is sleeping\n"
@@ -75,7 +75,7 @@ class TestLanguageGame(unittest.TestCase):
         with patch('builtins.input', side_effect=['The', 'cat', 'is', 'sleeping', 'yes']):
             with patch('sys.stdout', new_callable=StringIO):
                 with self.assertRaises(GameError):
-                    self.game_instance.language_game(phrase, phrase_dict)
+                    self.game_instance.language_game(game_phrase, game_phrase_dict)
 
     def test_language_game_uppercase_input(self):
         game_phrase = "The cat is sleeping"
@@ -89,7 +89,7 @@ class TestLanguageGame(unittest.TestCase):
         input_values = ['THE', 'CAT', 'IS', 'SLEEPING', 'no']
         with patch('builtins.input', side_effect=input_values):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                self.game_instance.language_game(phrase, phrase_dict)
+                self.game_instance.language_game(game_phrase, game_phrase_dict)
 
         expected_output = (
             "Here is your sentence: The cat is sleeping\n"
@@ -114,7 +114,7 @@ class TestLanguageGame(unittest.TestCase):
         input_values = [123, 456, True, 'sleeping', 'no']
         with patch('builtins.input', side_effect=input_values):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                self.game_instance.language_game(phrase, phrase_dict)
+                self.game_instance.language_game(game_phrase, game_phrase_dict)
 
         expected_output = (
             "Here is your sentence: The cat is sleeping\n"
@@ -135,7 +135,7 @@ class TestLanguageGame(unittest.TestCase):
         input_values = ['?', '!', '"', '£', 'no']
         with patch('builtins.input', side_effect=input_values):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                self.game_instance.language_game(phrase, phrase_dict)
+                self.game_instance.language_game(game_phrase, game_phrase_dict)
 
         expected_output = (
             "Here is your sentence: The cat is sleeping\n"
