@@ -1,8 +1,10 @@
 import mysql.connector
 from config import USER, PASSWORD, HOST
 
+
 class DBConnectionError(Exception):
     pass
+
 
 def _connect_to_db(db_name):
     connection = mysql.connector.connect(
@@ -13,6 +15,7 @@ def _connect_to_db(db_name):
         database=db_name
     )
     return connection
+
 
 def get_sentence():
     try:
