@@ -1,4 +1,4 @@
-# Language Learning Game
+# Nunki | Language Learning Game
 > *"Education is not the filling of a pail, but the lighting of a fire." - William Butler Yeats*
 <!-- PROJECT LOGO -->
 <br />
@@ -33,7 +33,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-*"GAME NAME"* is an interactive Language Learning Game that utilizes a sophisticated word generation API to enhance the understanding of different parts of speech in English. The app caters to individual learners and serves as a supplementary teaching tool for educators.
+**Nunki** is an interactive Language Learning Game that utilizes a sophisticated word generation API to enhance the understanding of different parts of speech in English. The app caters to individual learners and serves as a supplementary teaching tool for educators.
 
 
 ### Project Stack and Collaboration Tools
@@ -84,3 +84,4 @@ Below is an example of how you can install and set up the program.
 
 
 
+![image](https://github.com/greeninkpen/Group6_final_project_Software1/assets/124294207/c6894ee7-b6ed-4d7e-b057-5a90336148c1)
