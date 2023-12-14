@@ -16,17 +16,19 @@ def _connect_to_db(db_name):
     )
     return connection
 
+
 def db_add_sentence_and_words(sentence, words):
     sentence_id = 0
+    db_name = 'language_game'
+    db_connection = _connect_to_db(db_name)
     try:
-        db_name = 'language_game'
-        db_connection = _connect_to_db(db_name)
+
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
         query = "INSERT INTO sentence (sentence_text) VALUES (%s)"
         values = (sentence,)
-        cur.execute(query, values) # has to execute before lastrowid can be used
+        cur.execute(query, values)  # has to execute before lastrowid can be used
         sentence_id = cur.lastrowid
         print("SENTENCE ID: ")
         print(sentence_id)
@@ -39,13 +41,12 @@ def db_add_sentence_and_words(sentence, words):
             print("WORD ID: ")
             print(word_id)
 
-            sql_insert = "INSERT INTO sentence_word (sentence_id, word_id) VALUES (%d, %d)"
+            sql_insert = "INSERT INTO sentence_word (sentence_id, word_id) VALUES (%s, %s)"
             values = (sentence_id, word_id)
             cur.execute(sql_insert, values)
 
         db_connection.commit()
         return "Success"
-
 
     except Exception as e:
         print(f"Error: {e}")

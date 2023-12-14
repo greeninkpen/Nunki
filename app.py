@@ -53,6 +53,7 @@ had a non-subscriptable error, and fix was here:
 https://stackoverflow.com/questions/77444332/openai-python-package-error-chatcompletion-object-is-not-subscriptable
 """
 
+
 @app.route('/save_phrase', methods=['POST'])
 def save_phrase():
     try:
