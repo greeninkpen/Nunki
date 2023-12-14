@@ -4,11 +4,8 @@ from config import api_key
 from db_utils import _connect_to_db, get_sentence, get_random_sentence
 
 app = Flask(__name__)
- Maria/add_projectdoc
+
 # Welcome endpoint
-
-
- main
 @app.route("/")
 def hello():
     return "it works!"
@@ -18,10 +15,8 @@ if __name__ == '__main__':
     app.run(debug=True, port=5000)
 
 
- Maria/add_projectdoc
+
 # Class to handle the OpenAI API call
-=======
- main
 class APICall:
     def api_call(self):
         client = OpenAI(
