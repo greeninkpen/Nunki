@@ -18,17 +18,10 @@ def hello():
     return "it works!"
 
 
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
-
-
-
 # Class to handle the OpenAI API call
 class APICall:
     def api_call(self):
         client = OpenAI(
-
          # defaults to os.environ.get("OPENAI_API_KEY")
          api_key=api_key,
         )
@@ -96,9 +89,3 @@ def save_phrase():
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
 
-
-    return jsonify({"sentence": sentence})
-
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
