@@ -52,9 +52,30 @@ def db_add_sentence_and_words(sentence, words):
         print(f"Error: {e}")
         raise DBConnectionError("Failed to insert sentence into sentence table")
 
+def get_random_sentence():
+
+
+def get_sentence():
+
+    try:
+        db_name = 'language_game'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        print("Connected to DB: %s" % db_name)
+
+        query = "SELECT sentence_text FROM sentence ORDER BY RAND() LIMIT 1;"
+        cur.execute(query)
+
+        result = cur.fetchone()
+        if result:
+            return result[0]
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+
     finally:
         if db_connection:
             db_connection.close()
             print("DB connection is closed")
-
 

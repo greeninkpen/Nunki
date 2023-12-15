@@ -7,19 +7,28 @@ import json
 from flask import Flask, jsonify, request
 from openai import OpenAI
 from config import api_key
+
 from db_utils import db_add_sentence_and_words
 
 app = Flask(__name__)
 
-
+# Welcome endpoint
 @app.route("/")
 def hello():
     return "it works!"
 
 
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
+
+
+
+# Class to handle the OpenAI API call
 class APICall:
     def api_call(self):
         client = OpenAI(
+
          # defaults to os.environ.get("OPENAI_API_KEY")
          api_key=api_key,
         )
@@ -44,6 +53,7 @@ class APICall:
          messages=[{"role": "user", "content": prompt}],
          response_format={"type": "json_object"},
          model="gpt-3.5-turbo-1106",
+
         )
         return chat_completion
 
@@ -86,3 +96,9 @@ def save_phrase():
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
 
+
+    return jsonify({"sentence": sentence})
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)

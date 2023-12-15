@@ -5,12 +5,15 @@ CREATE DATABASE language_game;
 USE language_game;
 
 -- Create the glossary table
+
  CREATE TABLE glossary (
      glossary_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
      term VARCHAR(50) NOT NULL,
      definition TEXT NOT NULL,
      INDEX (term) -- added this index because I was getting error code 1822 trying to create word table for a missing index
  );
+
+
 
 -- Create the word table
  CREATE TABLE word (
@@ -30,6 +33,7 @@ USE language_game;
  );
 
 -- Create the sentence_word table
+
  CREATE TABLE sentence_word (
      sentence_id INT,
      word_id INT,
@@ -54,3 +58,4 @@ INSERT INTO glossary (glossary_id, term, definition) VALUES
 (8, 'interjection', 'A word or phrase used to express strong emotion or surprise.'),
 (9, 'determiner', 'A modifying word, phrase of affix that appears together with a noun or noun phrase.'),
 (10, 'article', 'A word that gives information about a noun');
+
