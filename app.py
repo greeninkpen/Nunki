@@ -94,23 +94,7 @@ def get_random_sentence():
 
     return jsonify({"sentence": sentence})
 
-@app.route("/get_glossary", methods=["GET"])
-def get_game_glossary():
-    try:
-        db_glossary = get_glossary()
-        return jsonify(db_glossary)
-    except Exception as e:
-        print(f"Error in calling the glossary: {str(e)}")
-        return jsonify({"error": "Internal Server Error"}), 500
 
-@app.route("/get_game_dictionary", methods=["GET"])
-def get_game_dictionary():
-    try:
-        game_phrase_dict = get_game_dict()
-        return jsonify(game_phrase_dict)
-    except Exception as e:
-        print(f"Error in calling the glossary: {str(e)}")
-        return jsonify({"error": "Internal Server Error"}), 500
 
 # app.run must always go at the end of the file in order for the endpoints to 'exist'
 if __name__ == '__main__':
