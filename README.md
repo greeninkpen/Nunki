@@ -25,7 +25,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -61,23 +60,47 @@ This Language Learning Game serves as an educational resource to assist individu
 <!-- GETTING STARTED -->
 ## Getting Started
 ### Prerequisites
-This is an example of how to list things you need to use the software and how to install them.
+Imports:
+* requests
+* json
+* os.path 
+* sys
+* flash
+* openai
+* os and dotevn-python
+* unnittest
+* mysql.connector
 
 ### Installation
 
-Below is an example of how you can install and set up the program.
+Below is an example of how you can set up the OpenAI API.
 
-1. Get a free API Key at [https://example1.com](https://example.com)
+1. Get a secret API Key at [https://platform.openai.com/account/api-keys](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone git@github.com:greeninkpen/Group6_final_project_Software1.git
+   ```
+3. Install the OpenAI Python library
+   ```sh
+   pip install --upgrade openai
+   ```
+4. Enter your API key in `config.py`
+   ```py
+   OPENAI_API_KEY=abc123
+   ```
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-<!-- ROADMAP -->
-## Roadmap
-
 <!-- CONTACT -->
 ## Contact
+* Alejandra [Github](https://github.com/AlBeker)
+* Alexandra [Github](https://github.com/alexfc-code)
+* Desiree [Github](https://github.com/greeninkpen)
+* Kirsty [Github](https://github.com/cib11164)
+* Maria [Github](https://github.com/Mariaherreramateos)
+* Morag [Github](https://github.com/Mobit2)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
