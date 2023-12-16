@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch
-import pytest
 from io import StringIO
 #from app import LanguageGame, GameError
 
