@@ -3,9 +3,10 @@ import requests
 import json
 
 def display_welcome():
+    welcome_title = ''' 
+    Welcome to the Language Learning Odyssey! 🌟\n
+    '''
     welcome_nunki = '''
-     Welcome to Nunki: A Language Learning Odyssey!🌟
-    
        /\   /\   
       //\\_//\\     ____
       \_     _/    /   /
@@ -18,9 +19,8 @@ def display_welcome():
     '''
 
     welcome_message = ''' 
-    Embark on an exhilarating quest to conquer English grammar in our Language Learning Game!\n\n
     +++ 🎮 GAME ON 🎮 +++
-    \n
+    \n\n
     What Awaits You:\n
         🌈 Dive into enchanting phrases and unveil the hidden parts of speech. Are you up for the challenge?\n
         🔍 Think you can unravel the mystery of distinguishing a 'noun' from an 'adjective'?\n
@@ -28,10 +28,8 @@ def display_welcome():
         🧠 Experience interactive quizzes crafted for learners, teachers, and language aficionados!\n
     \n \n'''
 
+    print(welcome_title)
     print(welcome_nunki)
-    print(welcome_message)
-
-
     view_rules = input("Would you like to see the game rules? (yes/no): ")
     if view_rules.lower() == 'yes':
         game_rules = '''
@@ -43,11 +41,11 @@ def display_welcome():
             Lost between a noun and an article? Fear not! A whimsical glossary awaits below, ready to transform you into a language maestro.\n\n
         '''
         print(game_rules)
-
+    
     view_glossary = input("Would you like to see the glossary? (yes/no): ")
     if view_glossary.lower() == 'yes':
         db_glossary = '''
-        +++ 🌈 WHIMSICAL GLOSSARY 🌈 +++\n
+         +++ 🌈 WHIMSICAL GLOSSARY 🌈 +++\n
         +------------------+---------------------------------------------------------------+
         | Part of Speech   | Definition                                                    |
         +------------------+---------------------------------------------------------------+
@@ -67,17 +65,20 @@ def display_welcome():
         | Conjunction      | A word that connects words, phrases, or clauses.              |
         +------------------+---------------------------------------------------------------+
         | Interjection     | A word or phrase that expresses strong emotion or surprise.   |
-        +------------------+---------------------------------------------------------------+
+        +------------------+------------------------------------------------------------------------------------------------------+
+        | Article          | A type of adjective that specifies whether a noun is definite or indefinite (e.g., "a," "an," "the").|
+        +------------------+------------------------------------------------------------------------------------------------------+
+        | Determiner       | A modifying word, phrase of affix that appears together with a noun or noun phrase.                  | 
+        +------------------+------------------------------------------------------------------------------------------------------+
         \n
         '''
         print(db_glossary)
 
+    print("Seize the chance to elevate your language skills in a unique way")
+    print("🚀 Hit play now and set forth on your Language Learning Odyssey!")
 
-print(welcome_fox)
-print(welcome_message)
-print(game_rules)
-print(glossary_message)
-#print(db-glossary)
+display_welcome()
+
 
 
 def add_sentence(full_sentence):
@@ -114,5 +115,4 @@ if __name__ == '__main__':
     print("Seize the chance to elevate your language skills in a unique way")
     print("🚀 Hit play now and set forth on your Language Learning Odyssey!")
 
-display_welcome()
 
