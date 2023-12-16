@@ -7,23 +7,21 @@ import json
 from flask import Flask, jsonify, request
 from openai import OpenAI
 from config import api_key
-
-from db_utils import db_add_sentence_and_words
+from db_utils import db_add_sentence_and_words, get_sentence, get_glossary, get_game_dict
 
 app = Flask(__name__)
 
-# Welcome endpoint
+
 @app.route("/")
 def hello():
     return "it works!"
 
 
-# Class to handle the OpenAI API call
 class APICall:
     def api_call(self):
         client = OpenAI(
-         # defaults to os.environ.get("OPENAI_API_KEY")
-         api_key=api_key,
+            # defaults to os.environ.get("OPENAI_API_KEY")
+            api_key=api_key,
         )
 
         prompt = """
@@ -46,7 +44,6 @@ class APICall:
          messages=[{"role": "user", "content": prompt}],
          response_format={"type": "json_object"},
          model="gpt-3.5-turbo-1106",
-
         )
         return chat_completion
 
@@ -84,6 +81,36 @@ def save_phrase():
         print(f"Error processing message: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
+#DRAFT GET REQUEST
+@app.route("/get_sentence", methods=["GET"])
+def get_random_sentence():
+    # Try to get a random sentence from the database
+    sentence = get_sentence()
+
+    # Testing until sentences are available in the DB
+    if not sentence:
+        sample_sentence = "This is a sample sentence."
+        return jsonify({"sentence": sample_sentence})
+
+    return jsonify({"sentence": sentence})
+
+@app.route("/get_glossary", methods=["GET"])
+def get_game_glossary():
+    try:
+        db_glossary = get_glossary()
+        return jsonify(db_glossary)
+    except Exception as e:
+        print(f"Error in calling the glossary: {str(e)}")
+        return jsonify({"error": "Internal Server Error"}), 500
+
+@app.route("/get_game_dictionary", methods=["GET"])
+def get_game_dictionary():
+    try:
+        game_phrase_dict = get_game_dict()
+        return jsonify(game_phrase_dict)
+    except Exception as e:
+        print(f"Error in calling the glossary: {str(e)}")
+        return jsonify({"error": "Internal Server Error"}), 500
 
 # app.run must always go at the end of the file in order for the endpoints to 'exist'
 if __name__ == '__main__':
