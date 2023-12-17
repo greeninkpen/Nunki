@@ -1,11 +1,14 @@
-
 import requests
 import json
+from app import get_random_sentence, get_game_dictionary, app
+from random import shuffle
+
 
 def display_welcome():
+    welcome_title = ''' 
+    Welcome to the Language Learning Odyssey! 🌟\n
+    '''
     welcome_nunki = '''
-     Welcome to Nunki: A Language Learning Odyssey!🌟
-    
        /\   /\   
       //\\_//\\     ____
       \_     _/    /   /
@@ -18,9 +21,8 @@ def display_welcome():
     '''
 
     welcome_message = ''' 
-    Embark on an exhilarating quest to conquer English grammar in our Language Learning Game!\n\n
     +++ 🎮 GAME ON 🎮 +++
-    \n
+    \n\n
     What Awaits You:\n
         🌈 Dive into enchanting phrases and unveil the hidden parts of speech. Are you up for the challenge?\n
         🔍 Think you can unravel the mystery of distinguishing a 'noun' from an 'adjective'?\n
@@ -28,10 +30,8 @@ def display_welcome():
         🧠 Experience interactive quizzes crafted for learners, teachers, and language aficionados!\n
     \n \n'''
 
+    print(welcome_title)
     print(welcome_nunki)
-    print(welcome_message)
-
-
     view_rules = input("Would you like to see the game rules? (yes/no): ")
     if view_rules.lower() == 'yes':
         game_rules = '''
@@ -47,7 +47,7 @@ def display_welcome():
     view_glossary = input("Would you like to see the glossary? (yes/no): ")
     if view_glossary.lower() == 'yes':
         db_glossary = '''
-        +++ 🌈 WHIMSICAL GLOSSARY 🌈 +++\n
+         +++ 🌈 WHIMSICAL GLOSSARY 🌈 +++\n
         +------------------+---------------------------------------------------------------+
         | Part of Speech   | Definition                                                    |
         +------------------+---------------------------------------------------------------+
@@ -67,52 +67,100 @@ def display_welcome():
         | Conjunction      | A word that connects words, phrases, or clauses.              |
         +------------------+---------------------------------------------------------------+
         | Interjection     | A word or phrase that expresses strong emotion or surprise.   |
-        +------------------+---------------------------------------------------------------+
+        +------------------+------------------------------------------------------------------------------------------------------+
+        | Article          | A type of adjective that specifies whether a noun is definite or indefinite (e.g., "a," "an," "the").|
+        +------------------+------------------------------------------------------------------------------------------------------+
+        | Determiner       | A modifying word, phrase of affix that appears together with a noun or noun phrase.                  | 
+        +------------------+------------------------------------------------------------------------------------------------------+
         \n
         '''
         print(db_glossary)
 
-
-print(welcome_fox)
-print(welcome_message)
-print(game_rules)
-print(glossary_message)
-#print(db-glossary)
-
-
-def add_sentence(full_sentence):
-    sentence = {
-        "sentence": full_sentence
-    }
-    request = requests.post("http:127.0.0.1:5000/sentence",
-                            headers={'content-type': 'application/json'},
-                            json=sentence
-                            )
-    result = request.json()
-
-
-def add_words(sentence_id, words):
-    data = {
-        "sentence_id": sentence_id,
-        "words": words
-    }
-    request = requests.post("http:127.0.0.1:5000/words",
-                            headers={'content-type': 'application/json'},
-                            json=data
-                            )
-    result = request.json()
-
-
-def run():
-    # add new sentence/ sentence words + part of speech
-    add_sentence()
-
-
-if __name__ == '__main__':
-    run()
-
     print("Seize the chance to elevate your language skills in a unique way")
     print("🚀 Hit play now and set forth on your Language Learning Odyssey!")
 
+
 display_welcome()
 
+
+# def add_sentence(full_sentence):
+#     sentence = {
+#         "sentence": full_sentence
+#     }
+#     request = requests.post("http:127.0.0.1:5000/sentence",
+#                             headers={'content-type': 'application/json'},
+#                             json=sentence
+#                             )
+#     result = request.json()
+#
+#
+# def add_words(sentence_id, words):
+#     data = {
+#         "sentence_id": sentence_id,
+#         "words": words
+#     }
+#     request = requests.post("http:127.0.0.1:5000/words",
+#                             headers={'content-type': 'application/json'},
+#                             json=data
+#                             )
+#     result = request.json()
+
+
+def add_sentence_and_words(full_sentence, words):
+    sentence = {
+        "sentence": full_sentence
+    }
+    sentence_request = requests.post("http:127.0.0.1:5000/sentence",
+                                     headers={'content-type': 'application/json'},
+                                     json=sentence
+                                     )
+    sentence_result = sentence_request.json()
+
+    words = {
+        "sentence_id": sentence_result["sentence_id"],
+        "words": words
+    }
+    words_request = requests.post("http:127.0.0.1:5000/words",
+                                  headers={'content-type': 'application/json'},
+                                  json=words
+                                  )
+    words_result = words_request.json()
+
+
+with app.app_context():
+    game_phrase = get_random_sentence  # Call sentence from DB sentence table
+    game_phrase_dict = get_game_dictionary()
+
+
+    class GameError(Exception):
+        pass
+
+
+    def language_game(game_phrase, game_phrase_dict):
+        try:
+            print("Here is your sentence: {}".format(game_phrase))
+            parts_of_speech = list(game_phrase_dict.keys())
+            shuffle(parts_of_speech)
+            for i in range(len(parts_of_speech)):
+                user_input = input("In the sentence, what word is the {}? ".format(parts_of_speech[i]))
+                if user_input.lower() == game_phrase_dict[parts_of_speech[i]].lower():
+                    print("Correct! {} is the {}! Great job!".format(game_phrase_dict[parts_of_speech[i]],
+                                                                     parts_of_speech[i]))
+                else:
+                    print("You're not quite right! Check the glossary & try again!")
+        except Exception:
+            raise GameError("Uh-Oh! Something went wrong! Please restart the program to try again")
+        finally:
+            play_again = input("Do you want to play again? (yes/no): ").lower()
+            if play_again == 'yes':
+                language_game(game_phrase, game_phrase_dict)
+            else:
+                print("Thanks for playing!")
+
+language_game(game_phrase, game_phrase_dict)
+
+# add new sentence/ sentence words + part of speech
+# add_sentence_and_words()
+
+# if __name__ == '__main__':
+#     language_game(game_phrase, game_phrase_dict)
