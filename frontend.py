@@ -49,30 +49,32 @@ def display_welcome():
     if view_glossary.lower() == 'yes':
         db_glossary = '''
          +++ 🌈 WHIMSICAL GLOSSARY 🌈 +++\n
-        +------------------+---------------------------------------------------------------+
-        | Part of Speech   | Definition                                                    |
-        +------------------+---------------------------------------------------------------+
-        | Noun             | A word that represents a person, place, thing, or idea.       |
-        +------------------+---------------------------------------------------------------+
-        | Pronoun          | A word that takes the place of a noun in a sentence.          |
-        +------------------+---------------------------------------------------------------+
-        | Verb             | A word that expresses an action, occurrence, or state of being.|
-        +------------------+---------------------------------------------------------------+
-        | Adjective        | A word that describes or modifies a noun or pronoun.          |
-        +------------------+---------------------------------------------------------------+
-        | Adverb           | A word that modifies a verb, adjective, or another adverb.    |
-        +------------------+---------------------------------------------------------------+
-        | Preposition      | A word that shows the relationship between a noun and another |
-        |                  | element in the sentence.                                      |
-        +------------------+---------------------------------------------------------------+
-        | Conjunction      | A word that connects words, phrases, or clauses.              |
-        +------------------+---------------------------------------------------------------+
-        | Interjection     | A word or phrase that expresses strong emotion or surprise.   |
-        +------------------+------------------------------------------------------------------------------------------------------+
-        | Article          | A type of adjective that specifies whether a noun is definite or indefinite (e.g., "a," "an," "the").|
-        +------------------+------------------------------------------------------------------------------------------------------+
-        | Determiner       | A modifying word, phrase of affix that appears together with a noun or noun phrase.                  | 
-        +------------------+------------------------------------------------------------------------------------------------------+
++------------------+---------------------------------------------------------------+
+| Part of Speech   | Definition                                                    |
++------------------+---------------------------------------------------------------+
+| Noun             | A word that represents a person, place, thing, or idea.       |
++------------------+---------------------------------------------------------------+
+| Pronoun          | A word that takes the place of a noun in a sentence.          |
++------------------+---------------------------------------------------------------+
+| Verb             | A word that expresses an action, occurrence, or state of being.|
++------------------+---------------------------------------------------------------+
+| Adjective        | A word that describes or modifies a noun or pronoun.          |
++------------------+---------------------------------------------------------------+
+| Adverb           | A word that modifies a verb, adjective, or another adverb.    |
++------------------+---------------------------------------------------------------+
+| Preposition      | A word that shows the relationship between a noun and another |
+|                  | element in the sentence.                                      |
++------------------+---------------------------------------------------------------+
+| Conjunction      | A word that connects words, phrases, or clauses.              |
++------------------+---------------------------------------------------------------+
+| Interjection     | A word or phrase that expresses strong emotion or surprise.   |
++------------------+---------------------------------------------------------------+
+| Article          | A word that specifies a noun as definite (the) or indefinite  |
+|                  | (a, an).                                                      |
++------------------+---------------------------------------------------------------+
+| Determiner       | A word that introduces a noun and identifies it in terms of   |
+|                  | definiteness, quantity, or possession.                         |
++------------------+---------------------------------------------------------------+
         \n
         '''
         print(db_glossary)
