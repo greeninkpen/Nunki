@@ -22,7 +22,6 @@ def db_add_sentence_and_words(sentence, words):
     db_name = 'language_game'
     db_connection = _connect_to_db(db_name)
     try:
-
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
@@ -52,30 +51,70 @@ def db_add_sentence_and_words(sentence, words):
         print(f"Error: {e}")
         raise DBConnectionError("Failed to insert sentence into sentence table")
 
-def get_random_sentence():
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection for db_add_sentence_and_word is closed")
 
 
-def get_sentence():
-
+def db_get_sentence():
+    db_name = 'language_game'
+    db_connection = _connect_to_db(db_name)
     try:
-        db_name = 'language_game'
-        db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
         query = "SELECT sentence_text FROM sentence ORDER BY RAND() LIMIT 1;"
         cur.execute(query)
-
         result = cur.fetchone()
+
         if result:
             return result[0]
 
     except Exception as e:
         print(f"Error: {e}")
 
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection for db_get_sentence is closed")
+
+
+def db_get_game_dict(db_get_sentence):
+    db_name = 'language_game'
+    db_connection = _connect_to_db(db_name)
+    try:
+        cur = db_connection.cursor()
+        print("Connected to DB: %s" % db_name)
+
+        query = """
+                            SELECT w.word_text, w.part_of_speech
+                            FROM sentence s
+                            JOIN sentence_word sw ON s.sentence_id = sw.sentence_id
+                            JOIN word w ON sw.word_id = w.word_id
+                            WHERE s.sentence_text = %s;
+                            """
+        sentence_value = (db_get_sentence(),)
+        cur.execute(query, sentence_value)
+
+        rows = cur.fetchall()
+        columns = [desc[0] for desc in cur.description]
+
+        result = [dict(zip(columns, row)) for row in rows]
+
+        return result
+
+    except Exception as e:
+        print(f"Error: {e}")
 
     finally:
         if db_connection:
             db_connection.close()
-            print("DB connection is closed")
+            print("DB connection for db_get_game_dict is closed")
+
+
+if __name__ == '__main__':
+    # db_add_sentence_and_words(sentence='sentence', words='words')
+    db_get_sentence()
+    db_get_game_dict(db_get_sentence)
 
