@@ -8,7 +8,7 @@ from flask import Flask, jsonify, request
 from openai import OpenAI
 from config import api_key
 from db_utils import db_add_sentence_and_words, db_get_sentence, db_get_game_dict
-# from random import shuffle
+
 
 app = Flask(__name__)
 
@@ -83,23 +83,38 @@ def save_phrase():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
-@app.route("/get_sentence", methods=["GET"])
 def get_random_sentence():
     # Try to get a random sentence from the database
     sentence = db_get_sentence()
+    print("Random sentence: ", sentence)
 
     # Testing until sentences are available in the DB
     if not sentence:
         sample_sentence = "This is a sample sentence."
-        return jsonify({"sentence": sample_sentence})
+        return sample_sentence
+    return sentence
 
-    return jsonify({"sentence": sentence})
+
+@app.route("/get_sentence", methods=["GET"])
+def get_random_sentence_rest():
+    # Try to get a random sentence from the database
+    sentence = get_random_sentence()
+    return jsonify(sentence)
 
 
-@app.route("/get_game_dictionary", methods=["GET"])
 def get_game_dictionary():
     try:
         game_phrase_dict = db_get_game_dict(db_get_sentence)
+        return game_phrase_dict
+    except Exception as e:
+        print(f"Error in calling the glossary: {str(e)}")
+        return "error"
+
+
+@app.route("/get_game_dictionary", methods=["GET"])
+def get_game_dictionary_rest():
+    try:
+        game_phrase_dict = get_game_dictionary()
         return jsonify(game_phrase_dict)
     except Exception as e:
         print(f"Error in calling the glossary: {str(e)}")
