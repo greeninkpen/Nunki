@@ -1,3 +1,4 @@
+import random
 import requests
 import json
 from app import get_random_sentence, get_game_dictionary, app
@@ -83,34 +84,11 @@ def display_welcome():
 display_welcome()
 
 
-# def add_sentence(full_sentence):
-#     sentence = {
-#         "sentence": full_sentence
-#     }
-#     request = requests.post("http:127.0.0.1:5000/sentence",
-#                             headers={'content-type': 'application/json'},
-#                             json=sentence
-#                             )
-#     result = request.json()
-#
-#
-# def add_words(sentence_id, words):
-#     data = {
-#         "sentence_id": sentence_id,
-#         "words": words
-#     }
-#     request = requests.post("http:127.0.0.1:5000/words",
-#                             headers={'content-type': 'application/json'},
-#                             json=data
-#                             )
-#     result = request.json()
-
-
 def add_sentence_and_words(full_sentence, words):
     sentence = {
         "sentence": full_sentence
     }
-    sentence_request = requests.post("http:127.0.0.1:5000/sentence",
+    sentence_request = requests.post("http:127.0.0.1:5000/save_phrase",
                                      headers={'content-type': 'application/json'},
                                      json=sentence
                                      )
@@ -120,7 +98,7 @@ def add_sentence_and_words(full_sentence, words):
         "sentence_id": sentence_result["sentence_id"],
         "words": words
     }
-    words_request = requests.post("http:127.0.0.1:5000/words",
+    words_request = requests.post("http:127.0.0.1:5000/save_phrase",
                                   headers={'content-type': 'application/json'},
                                   json=words
                                   )
@@ -128,7 +106,7 @@ def add_sentence_and_words(full_sentence, words):
 
 
 with app.app_context():
-    game_phrase = get_random_sentence  # Call sentence from DB sentence table
+    game_phrase = get_random_sentence()
     game_phrase_dict = get_game_dictionary()
 
 
@@ -138,14 +116,21 @@ with app.app_context():
 
     def language_game(game_phrase, game_phrase_dict):
         try:
-            print("Here is your sentence: {}".format(game_phrase))
-            parts_of_speech = list(game_phrase_dict.keys())
-            shuffle(parts_of_speech)
-            for i in range(len(parts_of_speech)):
-                user_input = input("In the sentence, what word is the {}? ".format(parts_of_speech[i]))
-                if user_input.lower() == game_phrase_dict[parts_of_speech[i]].lower():
-                    print("Correct! {} is the {}! Great job!".format(game_phrase_dict[parts_of_speech[i]],
-                                                                     parts_of_speech[i]))
+            # test to make sure phrase is the same
+            game_phrase_from_dict = ' '.join(d["word_text"] for d in game_phrase_dict)
+
+            print("Here is your sentence: {}".format(game_phrase_from_dict))
+            parts_of_speech = {d["part_of_speech"]: d["word_text"] for d in game_phrase_dict}
+
+            keys = list(parts_of_speech.keys())
+            random.shuffle(keys)
+
+            for pos in keys:
+                user_input = input("In the sentence, what word is the {}? ".format(pos))
+                print(user_input.lower())
+
+                if user_input.lower() == parts_of_speech[pos].lower():
+                    print("Correct! {} is the {}! Great job!".format(parts_of_speech[pos], format(pos)))
                 else:
                     print("You're not quite right! Check the glossary & try again!")
         except Exception:
@@ -158,9 +143,3 @@ with app.app_context():
                 print("Thanks for playing!")
 
 language_game(game_phrase, game_phrase_dict)
-
-# add new sentence/ sentence words + part of speech
-# add_sentence_and_words()
-
-# if __name__ == '__main__':
-#     language_game(game_phrase, game_phrase_dict)
