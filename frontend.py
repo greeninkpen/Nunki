@@ -1,6 +1,9 @@
-
+import random
 import requests
 import json
+from app import get_random_sentence, get_game_dictionary, app
+from random import shuffle
+
 
 def display_welcome():
     welcome_title = ''' 
@@ -41,7 +44,7 @@ def display_welcome():
             Lost between a noun and an article? Fear not! A whimsical glossary awaits below, ready to transform you into a language maestro.\n\n
         '''
         print(game_rules)
-    
+
     view_glossary = input("Would you like to see the glossary? (yes/no): ")
     if view_glossary.lower() == 'yes':
         db_glossary = '''
@@ -77,40 +80,66 @@ def display_welcome():
     print("Seize the chance to elevate your language skills in a unique way")
     print("🚀 Hit play now and set forth on your Language Learning Odyssey!")
 
+
 display_welcome()
 
 
-
-def add_sentence(full_sentence):
+def add_sentence_and_words(full_sentence, words):
     sentence = {
         "sentence": full_sentence
     }
-    request = requests.post("http:127.0.0.1:5000/sentence",
-                            headers={'content-type': 'application/json'},
-                            json=sentence
-                            )
-    result = request.json()
+    sentence_request = requests.post("http:127.0.0.1:5000/save_phrase",
+                                     headers={'content-type': 'application/json'},
+                                     json=sentence
+                                     )
+    sentence_result = sentence_request.json()
 
-
-def add_words(sentence_id, words):
-    data = {
-        "sentence_id": sentence_id,
+    words = {
+        "sentence_id": sentence_result["sentence_id"],
         "words": words
     }
-    request = requests.post("http:127.0.0.1:5000/words",
-                            headers={'content-type': 'application/json'},
-                            json=data
-                            )
-    result = request.json()
+    words_request = requests.post("http:127.0.0.1:5000/save_phrase",
+                                  headers={'content-type': 'application/json'},
+                                  json=words
+                                  )
+    words_result = words_request.json()
 
 
-def run():
-    # add new sentence/ sentence words + part of speech
-    add_sentence()
+with app.app_context():
+    game_phrase = get_random_sentence()
+    game_phrase_dict = get_game_dictionary()
 
 
-if __name__ == '__main__':
-    run()
+    class GameError(Exception):
+        pass
 
 
+    def language_game(game_phrase, game_phrase_dict):
+        try:
+            # test to make sure phrase is the same
+            game_phrase_from_dict = ' '.join(d["word_text"] for d in game_phrase_dict)
 
+            print("Here is your sentence: {}".format(game_phrase_from_dict))
+            parts_of_speech = {d["part_of_speech"]: d["word_text"] for d in game_phrase_dict}
+
+            keys = list(parts_of_speech.keys())
+            random.shuffle(keys)
+
+            for pos in keys:
+                user_input = input("In the sentence, what word is the {}? ".format(pos))
+                print(user_input.lower())
+
+                if user_input.lower() == parts_of_speech[pos].lower():
+                    print("Correct! {} is the {}! Great job!".format(parts_of_speech[pos], format(pos)))
+                else:
+                    print("You're not quite right! Check the glossary & try again!")
+        except Exception:
+            raise GameError("Uh-Oh! Something went wrong! Please restart the program to try again")
+        finally:
+            play_again = input("Do you want to play again? (yes/no): ").lower()
+            if play_again == 'yes':
+                language_game(game_phrase, game_phrase_dict)
+            else:
+                print("Thanks for playing!")
+
+language_game(game_phrase, game_phrase_dict)
