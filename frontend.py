@@ -112,7 +112,5 @@ def run():
 if __name__ == '__main__':
     run()
 
-    print("Seize the chance to elevate your language skills in a unique way")
-    print("🚀 Hit play now and set forth on your Language Learning Odyssey!")
 
 
