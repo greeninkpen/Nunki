@@ -117,4 +117,3 @@ if __name__ == '__main__':
     # db_add_sentence_and_words(sentence='sentence', words='words')
     db_get_sentence()
     db_get_game_dict(db_get_sentence)
-
