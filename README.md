@@ -26,7 +26,6 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -60,16 +59,19 @@ This Language Learning Game serves as an educational resource to assist individu
 <!-- GETTING STARTED -->
 ## Getting Started
 ### Prerequisites
-Imports:
-* requests
-* json
-* os.path 
-* sys
-* flash
-* openai
-* os and dotevn-python
+* Python==3.12
+* PyCharm Community Edition 2023.3.1
+* Flask 2.2.5
+* OpenAI==1.3.9
+* mysql-connector-python==8.2.0
+* requests==2.31.0
+* python-dotevn==1.0.0
+* pip=23.2.1
 * unnittest
-* mysql.connector
+* os.path
+* String.io
+* Sys
+
 
 ### Installation
 
@@ -92,6 +94,15 @@ Below is an example of how you can set up the OpenAI API.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+* **Database Setup:** Create a MySQL database using the information provided in the language_game_db.sql file. Execute the SQL script to set up the required tables and schema.
+
+* **Config File Setup:** Ensure to include the corresponding database credentials (username, password, database name) in the configuration file. This allows the application to establish a connection with the MySQL database.
+
+* **Running the Application:** Run the frontend file to start playing the language learning game.
+
+* **Gameplay:** Play several rounds with diverse sentences provided by the game. Attempt to identify various parts of speech within the sentences, such as nouns, verbs, adjectives, etc.
+
+* **Accessing the Glossary:** During gameplay, you have the option to view the glossary. Use this feature to expand your knowledge of language fundamentals. The glossary contains definitions for different parts of speech, aiding in understanding the sentence structure and enhancing language skills.
 
 <!-- CONTACT -->
 ## Contact
@@ -102,9 +113,5 @@ Below is an example of how you can set up the OpenAI API.
 * Maria [Github](https://github.com/Mariaherreramateos)
 * Morag [Github](https://github.com/Mobit2)
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-
-
+<!-- CFG SOFTWARE ENGINEERING STREAM -->
 ![image](https://github.com/greeninkpen/Group6_final_project_Software1/assets/124294207/c6894ee7-b6ed-4d7e-b057-5a90336148c1)
