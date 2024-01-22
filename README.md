@@ -113,6 +113,6 @@ Below is an example of how you can set up the OpenAI API.
 * Maria [Github](https://github.com/Mariaherreramateos)
 * Morag [Github](https://github.com/Mobit2)
 
-<!-- CFG SOFTWARE ENGINEERING STREAM -->
-## CFG Software Engineering Stream | Nunki Team
+<!-- SOFTWARE ENGINEERING STREAM -->
+## Nunki Team
 ![image](https://github.com/greeninkpen/Group6_final_project_Software1/assets/124294207/c6894ee7-b6ed-4d7e-b057-5a90336148c1)
