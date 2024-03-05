@@ -145,3 +145,5 @@ with app.app_context():
                 print("Thanks for playing!")
 
 language_game(game_phrase, game_phrase_dict)
+
+
